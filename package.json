@@ -1,240 +1,194 @@
 {
-  "name": "carbon-components",
-  "description": "Carbon Components is a component library for IBM Cloud",
-  "homepage": "http://carbondesignsystem.com/",
-  "version": "7.2.1",
-  "module": "es/index.js",
-  "main": "umd/index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/carbon-design-system/carbon-components.git"
-  },
-  "bugs": {
-    "url": "https://github.com/carbon-design-system/carbon-components/issues"
-  },
-  "keywords": [
-    "carbon",
-    "component",
-    "components",
-    "css",
-    "html",
-    "ibm",
-    "javascript",
-    "js",
-    "library",
-    "pattern",
-    "patterns",
-    "sass",
-    "scss",
-    "style guide",
-    "eyeglass-module"
-  ],
+  "name": "carbon",
+  "private": true,
+  "version": "0.0.0",
+  "repository": "git@github.com:carbon-design-system/carbon.git",
+  "license": "Apache-2.0",
   "engines": {
-    "node": ">=6.x"
+    "node": "10.x"
   },
-  "dependencies": {
-    "carbon-icons": "^6.0.4",
-    "flatpickr": "2.6.3",
-    "lodash.debounce": "^4.0.8",
-    "warning": "^3.0.0"
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": []
+  },
+  "scripts": {
+    "build": "lerna run build --stream --prefix --npm-client yarn",
+    "ci-check": "carbon-cli ci-check",
+    "clean": "lerna run clean && lerna clean --yes && rimraf node_modules",
+    "doctoc": "doctoc --title '## Table of Contents' docs",
+    "format": "prettier --write '**/*.{js,md,scss,ts}' '!**/{build,es,lib,storybook,ts,umd}/**'",
+    "format:diff": "prettier --list-different '**/*.{js,md,scss,ts}' '!**/{build,es,lib,storybook,ts,umd,components}/**'",
+    "lint": "eslint packages",
+    "lint:styles": "stylelint '**/*.{css,scss}' --config ./packages/stylelint-config-elements",
+    "sync": "carbon-cli sync",
+    "test": "cross-env BABEL_ENV=test jest",
+    "test:e2e": "cross-env BABEL_ENV=test jest --testPathPattern=e2e --testPathIgnorePatterns='examples,/packages/components/,/packages/react/'"
   },
   "devDependencies": {
-    "@frctl/fractal": "^1.1.0",
-    "adaro": "1.0.4",
-    "autoprefixer": "^8.2.0",
-    "babel-core": "^6.22.0",
-    "babel-eslint": "^7.0.0",
-    "babel-loader": "^7.1.0",
-    "babel-plugin-dev-expression": "^0.2.1",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-plugin-istanbul": "^3.0.0",
-    "babel-plugin-rewire": "^1.1.0",
-    "babel-plugin-transform-class-properties": "^6.22.0",
-    "babel-plugin-transform-es2015-modules-umd": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.22.0",
-    "babel-preset-env": "^1.0.0",
-    "babel-preset-react": "^6.24.0",
-    "babel-runtime": "^6.22.0",
-    "bluebird": "~3.1.1",
-    "browser-sync": "~2.10.0",
-    "carbon-addons-cloud": "^1.8.0",
-    "carbon-components-react": "^5.8.0",
-    "classnames": "^2.2.0",
-    "commander": "^2.13.0",
-    "core-js": "^2.4.0",
-    "css-loader": "^0.28.0",
-    "custom-event": "^1.0.0",
-    "cz-conventional-changelog": "^1.2.0",
-    "del": "~2.0.2",
-    "diff": "^3.4.0",
-    "eslint": "^3.0.0",
-    "eslint-config-airbnb": "^11.0.0",
-    "eslint-config-airbnb-base": "^11.0.0",
-    "eslint-config-carbon": "^1.0.0",
-    "eslint-config-carbon-base": "^1.0.1",
-    "eslint-config-prettier": "^2.6.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsdoc": "^3.3.0",
-    "eslint-plugin-jsx-a11y": "^2.0.0",
-    "eslint-plugin-prettier": "^2.3.1",
-    "eslint-plugin-react": "^7.5.0",
-    "express": "4.16.2",
-    "express-handlebars": "^3.0.0",
-    "globby": "4.0.0",
-    "gulp": "~3.9.0",
-    "gulp-autoprefixer": "~3.0.1",
-    "gulp-axe-webdriver": "^1.4.0",
-    "gulp-babel": "^6.1.2",
-    "gulp-jsdoc3": "^0.2.1",
-    "gulp-nodemon": "^2.2.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "2.3.1",
-    "gulp-sass-lint": "~1.1.1",
-    "gulp-sourcemaps": "~1.6.0",
-    "gulp-uglify": "^2.1.2",
-    "gulp-util": "~3.0.7",
-    "handlebars-helpers": "^0.10.0",
-    "html-loader": "^0.5.0",
-    "husky": "^0.12.0",
-    "jasmine-core": "^2.9.0",
-    "karma": "^2.0.0",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-coverage": "^1.1.0",
-    "karma-firefox-launcher": "^1.0.0",
-    "karma-html2js-preprocessor": "^1.1.0",
-    "karma-ie-launcher": "^1.0.0",
-    "karma-jasmine": "^1.1.0",
-    "karma-safari-launcher": "^1.0.0",
-    "karma-sourcemap-loader": "~0.3.7",
-    "karma-spec-reporter": "0.0.32",
-    "karma-webpack": "^2.0.0",
-    "lint-staged": "^6.1.0",
-    "lolex": "1.4.0",
-    "markdown-it": "^8.4.0",
-    "merge-stream": "^1.0.0",
-    "minimatch": "^3.0.0",
-    "mkdirp": "^0.5.0",
-    "mock-raf": "^1.0.0",
-    "nodemon": "1.9.1",
-    "postcss-loader": "^2.1.0",
-    "prettier": "^1.7.0",
-    "promise": "^8.0.1",
-    "prop-types": "^15.6.0",
-    "pump": "^1.0.2",
-    "react": "^16.2.0",
-    "react-copy-to-clipboard": "^5.0.0",
-    "react-dom": "^16.2.0",
-    "react-ga": "^2.4.0",
-    "rollup": "^0.49.0",
-    "rollup-plugin-babel": "^3.0.0",
-    "rollup-plugin-commonjs": "^8.2.0",
-    "rollup-plugin-filesize": "^1.2.1",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-replace": "^2.0.0",
-    "rollup-plugin-uglify": "^2.0.0",
-    "sass-loader": "^6.0.0",
-    "scss-to-json": "1.1.0",
-    "semantic-release": "^15.5.0",
-    "style-loader": "^0.20.0",
-    "validate-commit-msg": "^2.8.2",
-    "vinyl-named": "^1.1.0",
-    "webpack": "^3.10.0",
-    "webpack-dev-middleware": "^2.0.0",
-    "webpack-hot-middleware": "^2.21.0",
-    "whatwg-fetch": "^2.0.4"
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.4.4",
+    "@carbon/cli": "10.5.0",
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-conventional": "^7.5.0",
+    "babel-jest": "^24.8.0",
+    "cross-env": "^5.2.0",
+    "cross-spawn": "^6.0.5",
+    "doctoc": "^1.4.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.3.5",
+    "eslint": "^6.0.0",
+    "eslint-config-carbon": "10.4.0",
+    "fs-extra": "^7.0.1",
+    "glob": "^7.1.4",
+    "husky": "^2.1.0",
+    "jest": "^24.8.0",
+    "jest-circus": "^24.8.0",
+    "jest-junit": "^6.4.0",
+    "lerna": "^3.13.4",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.17.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "rimraf": "^2.6.3",
+    "stylelint": "^10.0.1"
   },
-  "resolutions": {
-    "freshy": ">= 1.0.3"
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
   },
-  "files": [
-    "css/**/*",
-    "es/**/*",
-    "html/**/*",
-    "scripts/**/*",
-    "scss/**/*",
-    "src/**/*",
-    "umd/**/*"
-  ],
-  "scripts": {
-    "build": "gulp build",
-    "build-dev": "gulp build:dev",
-    "ci-check": "sh ./tools/ci-check.sh",
-    "commitmsg": "validate-commit-msg",
-    "dev": "gulp serve",
-    "lint": "eslint .",
-    "lint:staged": "eslint",
-    "prebuild": "gulp clean",
-    "precommit": "lint-staged",
-    "prepublishOnly": "npm run build",
-    "prettier": "prettier --write \"**/*.{scss,css,js}\"",
-    "prettier:staged": "prettier --write",
-    "start": "node server.js",
-    "test": "gulp test",
-    "test:unit": "gulp test:unit",
-    "test:a11y": "gulp test:a11y",
-    "semantic-release": "semantic-release"
-  },
-  "license": "Apache-2",
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    },
-    "validate-commit-msg": {
-      "maxSubjectLength": 100,
-      "subjectPattern": ".+",
-      "subjectPatternErrorMsg": "Subject does not match subject pattern!",
-      "types": [
-        "chore",
-        "docs",
-        "feat",
-        "fix",
-        "perf",
-        "refactor",
-        "revert",
-        "style",
-        "test"
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "header-max-length": [
+        2,
+        "always",
+        72
       ],
-      "warnOnFail": false
+      "body-max-line-length": [
+        2,
+        "always",
+        80
+      ],
+      "scope-case": [
+        0,
+        "always",
+        "lower-case"
+      ],
+      "type-enum": [
+        2,
+        "always",
+        [
+          "build",
+          "ci",
+          "chore",
+          "docs",
+          "feat",
+          "fix",
+          "perf",
+          "refactor",
+          "revert",
+          "test"
+        ]
+      ]
     }
   },
   "lint-staged": {
-    "*.js": [
-      "prettier:staged",
-      "lint:staged",
+    "**/*.js": [
+      "prettier --write",
+      "eslint",
       "git add"
     ],
-    "*.{css,scss}": [
-      "prettier:staged",
+    "packages/components/**/*.scss": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.md": [
+      "prettier --write",
       "git add"
     ]
   },
-  "maintainers": [
-    {
-      "name": "Mari Johannessen",
-      "email": "mjohannessen@us.ibm.com"
+  "eslintConfig": {
+    "extends": [
+      "eslint-config-carbon"
+    ]
+  },
+  "prettier": {
+    "jsxBracketSameLine": true,
+    "printWidth": 80,
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "proseWrap": "always"
+  },
+  "stylelint": {
+    "extends": [
+      "./packages/stylelint-config-elements"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "packages/**/src/**/*.js",
+      "!packages/{bundler,cli,components,sketch}/**",
+      "!packages/**/{examples,stories}/**",
+      "!**/*-story.js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "node"
+    ],
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
+    "setupFiles": [
+      "./tasks/jest/setup.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "testMatch": [
+      "<rootDir>/**/__tests__/**/*.js?(x)",
+      "<rootDir>/**/?(*.)(spec|test).js?(x)",
+      "<rootDir>/**/?(*-)(spec|test).js?(x)"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx)$": "./tasks/jest/jsTransform.js",
+      "^.+\\.css$": "./tasks/jest/cssTransform.js",
+      "^(?!.*\\.(js|jsx|css|json)$)": "./tasks/jest/fileTransform.js"
     },
-    {
-      "name": "TJ Egan",
-      "email": "twegan@us.ibm.com"
-    },
-    {
-      "name": "Akira Sudoh",
-      "email": "asudoh@jp.ibm.com"
-    },
-    {
-      "name": "Alison Joseph",
-      "email": "alison.joseph@us.ibm.com"
-    },
-    {
-      "name": "Alessandra Davila",
-      "email": "aledavila@us.ibm.com"
-    }
-  ],
-  "eyeglass": {
-    "sassDir": "scss",
-    "exports": false,
-    "name": "carbon-components",
-    "needs": "^1.2.1"
+    "testRunner": "jest-circus/runner",
+    "testPathIgnorePatterns": [
+      "/cjs/",
+      "/dist/",
+      "/es/",
+      "/lib/",
+      "e2e",
+      "examples",
+      "/umd/"
+    ],
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "watchPathIgnorePatterns": [
+      "/cjs/",
+      "/dist/",
+      "/es/",
+      "/examples/",
+      "/lib/",
+      "/storybook/"
+    ]
   }
 }

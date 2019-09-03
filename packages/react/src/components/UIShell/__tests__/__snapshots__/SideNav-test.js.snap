@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SideNav should render 1`] = `
+<ForwardRef(SideNav)
+  addMouseListeners={true}
+  aria-label="Navigation"
+  defaultExpanded={false}
+  isChildOfHeader={true}
+  isFixedNav={false}
+  isPersistent={true}
+  translateById={[Function]}
+>
+  <div
+    className="bx--side-nav__overlay"
+  />
+  <nav
+    aria-label="Navigation"
+    className="bx--side-nav__navigation bx--side-nav bx--side-nav--ux"
+    onBlur={[Function]}
+    onFocus={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <h2>
+      Navigation
+    </h2>
+  </nav>
+</ForwardRef(SideNav)>
+`;
