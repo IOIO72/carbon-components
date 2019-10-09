@@ -78,6 +78,15 @@ storiesOf('InlineLoading', module)
           ariaLive,
         });
       }
+
+      MockSubmission.displayName = 'InlineLoading';
+      MockSubmission.__docgenInfo = {
+        ...InlineLoading.__docgenInfo,
+        props: {
+          ...InlineLoading.__docgenInfo.props,
+        },
+      };
+
       return (
         <MockSubmission>
           {({ handleSubmit, isSubmitting, success, description, ariaLive }) => (
@@ -89,7 +98,7 @@ storiesOf('InlineLoading', module)
                 <InlineLoading
                   style={{ marginLeft: '1rem' }}
                   description={description}
-                  success={success}
+                  status={success ? 'finished' : 'active'}
                   aria-live={ariaLive}
                 />
               ) : (
